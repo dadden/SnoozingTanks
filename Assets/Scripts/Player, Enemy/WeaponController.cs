@@ -12,7 +12,6 @@ public class WeaponController : MonoBehaviour
     private int playerIndex;
     private float maxRotation = 10f;
     private float minRotation = -30f;
-    private float mouseY;
     private float rotationZ = 0f;
 
     private void Start()
@@ -24,16 +23,14 @@ public class WeaponController : MonoBehaviour
     {
         if (TurnManager.GetInstance().IsItMyTurn(playerIndex))
         {
-            
-        
-        mouseY = Input.GetAxis("Mouse Y");
 
-        rotatePipe();
+            rotatePipe();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             // Spawn projectile and call its Fire() function
             GameObject newProjectile = Instantiate(projectilePrefab);
+            // Add 2 to z location to eliminate chances of colliding with the weapon itself
             newProjectile.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, startPosition.position.z + 2);
             newProjectile.GetComponent<Projectile>().Fire();
         }

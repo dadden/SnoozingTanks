@@ -72,6 +72,12 @@ public class PlayerController : MonoBehaviour
             health = health - amount;
             Debug.LogError("Took damage! New health: " + health);
         }
+        
+        public void AddHP(int amount)
+        {
+            health = health + amount;
+            Debug.LogError("Picked up HP! New health: " + health);
+        }
 
         public void AddHitPoint()
         {

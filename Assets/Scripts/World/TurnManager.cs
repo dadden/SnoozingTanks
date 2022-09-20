@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     private static TurnManager instance;
-    [SerializeField] private float turnTimer;
     [SerializeField] private GameObject camera1;
     [SerializeField] private GameObject camera2;
+    [SerializeField] private GameObject canvas;
     private float currentTurnTime;
-    private float turnTimeLimit = 15f;
+    [SerializeField] private float turnTimeLimit = 11f;
 
     private int currentPlayer;
 
@@ -46,6 +47,7 @@ public class TurnManager : MonoBehaviour
             camera1.SetActive(true);
             Debug.Log("Changed turn to player 1");
         }
+        canvas.GetComponent<UIManager>().UpdateDisplayedPlayer();
     }
 
     // Used by the player controller to check who's turn it is
@@ -68,11 +70,21 @@ public class TurnManager : MonoBehaviour
             ChangeTurn();
         }
 
-        currentTurnTime += Time.deltaTime;
-        if (currentTurnTime >= turnTimeLimit)
+        currentTurnTime -= Time.deltaTime;
+        if (currentTurnTime <= 0)
         {
             ChangeTurn();
-            currentTurnTime = 0;
+            currentTurnTime = turnTimeLimit;
         }
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTurnTime;
+    }
+
+    public int GetPlayerTurn()
+    {
+        return currentPlayer;
     }
 }

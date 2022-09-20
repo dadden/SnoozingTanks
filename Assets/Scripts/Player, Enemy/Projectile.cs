@@ -6,15 +6,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject parent;
     private bool isActive;
     [SerializeField] private float upMomentum = 200f;
-    [SerializeField] private float forwardMomentum = 800f;
+    [SerializeField] private float forwardMomentum = 50f;
     
     public void Fire()
     {
         isActive = true;
         // Adds force to projectile, moving it up slightly as well as forward
-        rb.AddForce(transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Force);
+        rb.AddForce(parent.transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Impulse);
+        //rb.AddForce(transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Force);
     }
 
     private void OnCollisionEnter(Collision collision)

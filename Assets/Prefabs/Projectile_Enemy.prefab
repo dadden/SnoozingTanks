@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3951543144701851816}
+  parent: {fileID: 2037398924921499825, guid: c75b56046a7f4314abb6f3b96805b2c4, type: 3}
   upMomentum: 200
   forwardMomentum: 800
 --- !u!54 &3951543144701851816
