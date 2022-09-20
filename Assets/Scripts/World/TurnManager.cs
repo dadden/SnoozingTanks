@@ -9,6 +9,8 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private float turnTimer;
     [SerializeField] private GameObject camera1;
     [SerializeField] private GameObject camera2;
+    private float currentTurnTime;
+    private float turnTimeLimit = 15f;
 
     private int currentPlayer;
 
@@ -64,6 +66,13 @@ public class TurnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             ChangeTurn();
+        }
+
+        currentTurnTime += Time.deltaTime;
+        if (currentTurnTime >= turnTimeLimit)
+        {
+            ChangeTurn();
+            currentTurnTime = 0;
         }
     }
 }

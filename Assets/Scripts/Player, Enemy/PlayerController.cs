@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
 
                 if (moveHorizontal != 0) 
                 {
-                    transform.Translate(transform.right * moveSpeed * Time.deltaTime * moveHorizontal, Space.World); 
+                    //transform.Translate(transform.right * moveSpeed * Time.deltaTime * moveHorizontal, Space.World); 
+                    transform.Rotate(transform.up * moveSpeed * 10 * Time.deltaTime * moveHorizontal, Space.World); 
                 }
                 if (moveVertical != 0) 
                 {
