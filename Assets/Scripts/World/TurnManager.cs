@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private GameObject camera1;
     [SerializeField] private GameObject camera2;
     [SerializeField] private GameObject canvas;
-    private float currentTurnTime;
+    private float currentTurnTime = 10;
     [SerializeField] private float turnTimeLimit = 11f;
 
     private int currentPlayer;
@@ -36,6 +36,7 @@ public class TurnManager : MonoBehaviour
         if (currentPlayer == 1)
         {
             currentPlayer = 2;
+            // Change the active camera
             camera1.SetActive(false);
             camera2.SetActive(true);
             Debug.Log("Changed turn to player 2");
@@ -65,11 +66,6 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ChangeTurn();
-        }
-
         currentTurnTime -= Time.deltaTime;
         if (currentTurnTime <= 0)
         {

@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour
         public void AddHP(int amount)
         {
             health = health + amount;
+            if (health < 100)
+            {
+                health = 100;
+            }
             Debug.LogError("Picked up HP! New health: " + health);
         }
 
