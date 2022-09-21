@@ -10,8 +10,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [SerializeField] private GameObject player;
     private int playerIndex;
-    private float maxRotation = 10f;
-    private float minRotation = -30f;
+    private float maxRotation = 10f; //gammalt värde 30
+    private float minRotation = -50f;
     private float rotationZ = 0f;
 
     private void Start()
@@ -31,7 +31,8 @@ public class WeaponController : MonoBehaviour
             // Spawn projectile and call its Fire() function
             GameObject newProjectile = Instantiate(projectilePrefab);
             // Add 2 to z location to eliminate chances of colliding with the weapon itself
-            newProjectile.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, startPosition.position.z + 2);
+            newProjectile.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, startPosition.position.z);
+            newProjectile.transform.rotation = startPosition.rotation;
             newProjectile.GetComponent<Projectile>().Fire();
         }
     }

@@ -15,8 +15,7 @@ public class Projectile : MonoBehaviour
     {
         isActive = true;
         // Adds force to projectile, moving it up slightly as well as forward
-        rb.AddForce(parent.transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Impulse);
-        //rb.AddForce(transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Force);
+        rb.AddForce(transform.forward * forwardMomentum + transform.up * upMomentum, ForceMode.Force);
     }
 
     private void OnCollisionEnter(Collision collision)
