@@ -29,12 +29,13 @@ public class RespawnManager : MonoBehaviour
 
     private void Start()
     {
+        // Store the starting position and rotations of the players
         p1SpawnPoint = player1.transform.position;
         p1SpawnRot = player1.transform.rotation;
         p2SpawnPoint = player2.transform.position;
         p2SpawnRot = player2.transform.rotation;
     }
-
+    
     public void RespawnPlayer(int playerIndex)
     {
         if (playerIndex == 1)

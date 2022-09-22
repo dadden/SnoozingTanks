@@ -1,25 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
         [SerializeField] private Rigidbody characterBody;
         [SerializeField] private float moveSpeed = 2f;
-        [SerializeField] private float jumpSpeed = 50f;
+        [SerializeField] private float jumpSpeed = 500f;
         [SerializeField] private int playerIndex;
         [SerializeField] private GameObject particle;
-        [SerializeField] private Camera followCamera;
+        private bool isGrounded;
 
         private int health = 100;
         private int hitPoints = 0;
 
         private void Start()
         {
-            // Hide the cursor and disable the particle system
+            // Hide the cursor
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
+
         }
 
         void Update()
@@ -40,11 +44,10 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.Translate(transform.forward * moveSpeed * Time.deltaTime * moveVertical, Space.World); 
                 }
-
-
-                if (Input.GetKeyDown(KeyCode.Space) && IsTouchingFloor()) 
+                
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true) 
                 {
-                    Jump(); 
+                    Jump();
                 }
                 
             }
@@ -58,6 +61,16 @@ public class PlayerController : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
             }
+            
+            // Hardcoded way of advancing to the correct game over screen :)
+            if (playerIndex == 1 && health == 0)
+            {
+                SceneManager.LoadScene("GameOver_P1");
+            }
+            else if (playerIndex == 2 && health == 0)
+            {
+                SceneManager.LoadScene("GameOver_P2");
+            }
 
         }
     
@@ -65,12 +78,15 @@ public class PlayerController : MonoBehaviour
         {
             characterBody.AddForce(Vector3.up * jumpSpeed);
         }
-    
-        private bool IsTouchingFloor()
+
+        private void OnCollisionStay(Collision collisionInfo)
         {
-            RaycastHit hit;
-            bool result =  Physics.SphereCast(transform.position, 0.85f, -transform.up, out hit, 2f);
-            return result;
+            isGrounded = true;
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            isGrounded = false;
         }
 
         public void TakeDamage(int amount)

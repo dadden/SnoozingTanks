@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("PlayScene");
     }
-    
+
     public void OnRestartBtnClicked()
     {
         SceneManager.LoadScene("PlayScene");
