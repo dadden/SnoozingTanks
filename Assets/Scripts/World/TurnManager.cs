@@ -22,6 +22,7 @@ public class TurnManager : MonoBehaviour
         {
             instance = this;
             currentPlayer = 1;
+            camera2.SetActive(false);
         }
     }
     
