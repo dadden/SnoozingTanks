@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
                 particle.SetActive(true);
             }
 
+            // Very janky code to prevent players from ending up upside down with no way to get up again
+            if (transform.eulerAngles.z <= 60 || transform.eulerAngles.z >= 60)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            }
+
         }
     
         private void Jump()
@@ -70,13 +76,17 @@ public class PlayerController : MonoBehaviour
         public void TakeDamage(int amount)
         {
             health = health - amount;
+            if (health < 0)
+            {
+                health = 0;
+            }
             Debug.LogError("Took damage! New health: " + health);
         }
         
         public void AddHP(int amount)
         {
             health = health + amount;
-            if (health < 100)
+            if (health > 100)
             {
                 health = 100;
             }
