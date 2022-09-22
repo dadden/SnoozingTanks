@@ -14,3 +14,4 @@
  - Respawning system - <i>Since tanks cannot swim or operate underwater, the respawn system moves the player back to its spawn location</i>
  - Main menu and game over - <i>The game begins with a brief explanation of the game. Whenever a player dies, the game over UI is presented</i>
  
+ <img src="https://i.imgur.com/BiG9QOf.png">
