@@ -11,5 +11,6 @@ public class RespawnTrigger : MonoBehaviour
         GameObject hitObject = collision.gameObject;
         // Get the index from the player, pass it to the respawn manager
         RespawnManager.GetInstance().RespawnPlayer(hitObject.GetComponent<PlayerController>().GetIndex());
+      
     }
 }

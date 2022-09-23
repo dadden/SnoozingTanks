@@ -14,11 +14,12 @@ public class HealthPack : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject hitObject = collision.gameObject;
+        // Check if its colliding with a player
         if (collision.gameObject.tag == "Player");
         {
-            // Produces a random value from 5-10, calls the AddHP function, then destroys itself
+            // Produces a random value from 5-10, calls the AddHP function, then respawns at random location
             AddHP(hitObject, UnityEngine.Random.Range(5, 10));
-            Destroy(this.gameObject); 
+            PickupManager.GetInstance().MoveHealthPack(this.gameObject); 
         }
         
     }
