@@ -2,7 +2,7 @@
  
  Introduction to C# scripting language assignment
  
- I am aiming for a passing grade (G).
+ I am aiming for a passing with distinction grade (VG).
  
  <b>Player mechanics</b>
  - Custom character controller - <i>moving, rotating and jumping. Also stores health value</i>
